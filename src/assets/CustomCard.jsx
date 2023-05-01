@@ -1,9 +1,10 @@
 import Card from '@mui/material/Card';
 import { motion } from "framer-motion";
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Stack, TextField } from '@mui/material';
 import { useState } from 'react';
+import { SearchBar } from './SearchBar';
 
 
 
@@ -42,29 +43,13 @@ export const CustomCard = () => {
                                 </Stack>
                             </Stack>
                             <img
-                                style={{ width: 400, height: 250, borderRadius: 10 }}
+                                style={{ width: '50%', height: '50%', borderRadius: 10 }}
                                 src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
                                 alt="new"
                             />
                         </Stack>
-                        <Stack>
-                            <TextField onChange={handleTitle} id="outlined-basic" variant="outlined" />
-                        </Stack>
                     </Card>
-                    <motion.div
-                        whileHover={{ scale: 1.1 }}
-                        animate={{ scale: title === '' ? 1.1 : 1 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                    >
-                        <Button
-                            variant="contained"
-                            size="large"
-                            color='primary'
-                            disabled={title === '' ? true : false}
-                        >
-                            Generate AI
-                        </Button>
-                    </motion.div>
+                <SearchBar handle={handleTitle} title={title}/>
                 </Stack>
             </motion.div>
         </>
