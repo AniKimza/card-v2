@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Stack, Card, Typography, Box } from '@mui/material';
 import { useState } from 'react';
 import { SearchBar } from './SearchBar';
+import { AnimationTxt } from "./AnimationTxt";
 
 
 
@@ -11,6 +12,13 @@ export const CustomCard = () => {
     const handleTitle = (e) => {
         setTitle(e.target.value)
     }
+
+const typo = ['It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+'It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+'It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+'It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+'It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.']
+
 
     return (
         <>
@@ -31,24 +39,11 @@ export const CustomCard = () => {
                             </Typography>
                             <Stack direction={'row'} alignItems={'center'} spacing={5} sx={{ flex: 1 }}>
                             <Box sx={{ height: '300px', overflow: 'scroll', '&::-webkit-scrollbar': { width: '0em' }, '&::-webkit-scrollbar-thumb': { backgroundColor: '#1E1E1E' }}}>
-                                <Typography variant='h5' fontFamily={'Josefin Sans, sans-serif'}>
-                                It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                                </Typography>
-                                <Typography variant='h5' fontFamily={'Josefin Sans, sans-serif'}>
-                                It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                                </Typography>
-                                <Typography variant='h5' fontFamily={'Josefin Sans, sans-serif'}>
-                                It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                                </Typography>
-                                <Typography variant='h5' fontFamily={'Josefin Sans, sans-serif'}>
-                                It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                                </Typography>
-                                <Typography variant='h5' fontFamily={'Josefin Sans, sans-serif'}>
-                                It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                                </Typography>
-                                <Typography variant='h5' fontFamily={'Josefin Sans, sans-serif'}>
-                                It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                                </Typography>
+                               {typo.map((item, index) => {
+                                return <AnimationTxt key={index} index={index}>
+                                 <Typography variant='h5' fontFamily={'Josefin Sans, sans-serif'}>{item}</Typography>
+                                 </AnimationTxt>
+                               })}
                                 </Box>
                                 <img
                                     style={{ width: '35%', height: '70%', borderRadius: 10 }}
