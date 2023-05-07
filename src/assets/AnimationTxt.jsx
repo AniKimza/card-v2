@@ -10,8 +10,6 @@ const isInView = useInView(ref);
 
 const activateAnimation = useAnimation();
 
-console.log(isInView)
-
 useEffect(() => {
     if (isInView) {
     activateAnimation.start('center')}
@@ -30,7 +28,7 @@ useEffect(() => {
       }}
       initial= {index % 2 === 0? 'left': 'right'}
       animate= {activateAnimation}
-      transition={{duration: 0.5}}
+      transition={{duration: 0.5, delay: 0.2}}
     >
         {children}
     </motion.div>
