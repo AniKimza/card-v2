@@ -1,38 +1,46 @@
-import {useState, useEffect} from 'react'
-import {motion} from 'framer-motion'
-import { useAnimation } from 'framer-motion'
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useAnimation } from "framer-motion";
 
-const ImageContainer = ({children, width, index}) => {
+const ImageContainer = ({
+  children,
+  width,
+  index,
+  setHoveredIndex,
+  hoveredIndex,
+  foo,
+}) => {
+  const activateResize = useAnimation();
 
-    const [isHovered, setIsHovered] = useState(null)
-    const activateResize = useAnimation()
-
-    useEffect(() => {
-        if(isHovered){
-            activateResize.start('expand')
-        }else{
-            activateResize.start('reduce')
-        }
-    }, [isHovered])
+  useEffect(() => {
+    if (hoveredIndex === index) {
+      activateResize.start("expand");
+    } else if (hoveredIndex === null) {
+      activateResize.start("reduce");
+    } else {
+      activateResize.start("reduceSecondary");
+    }
+  }, [hoveredIndex]);
 
   return (
     <motion.div
-    style={{width: width, height: '100%'}}
-    variants={{
-        expand: {width: '70%', height: '100%'},
-        reduce: {height: '80%', width: width}
-    }}
-    onHoverStart= {() => {
-        setIsHovered(index)
-    }}
-    onHoverEnd={() => {
-        setIsHovered(null)
-    }}
-    animate={activateResize}
+      style={{ width: width, height: "100%" }}
+      variants={{
+        expand: { width: "70%", height: "100%" },
+        reduce: { height: "100%", width: width },
+        reduceSecondary: { height: `${100 - foo * 10}%`, width: width },
+      }}
+      onHoverStart={() => {
+        setHoveredIndex(index);
+      }}
+      onHoverEnd={() => {
+        setHoveredIndex(null);
+      }}
+      animate={activateResize}
     >
-        {children}
+      {children}
     </motion.div>
-  )
-}
+  );
+};
 
-export default ImageContainer
+export default ImageContainer;
