@@ -8,7 +8,6 @@ const ImageContainer = ({
   index,
   setHoveredIndex,
   hoveredIndex,
-  foo,
 }) => {
   const activateResize = useAnimation();
 
@@ -22,21 +21,33 @@ const ImageContainer = ({
     }
   }, [hoveredIndex]);
 
+  const secondaryHeight = () => {
+    const indexesFromHovered =  Math.abs(hoveredIndex - index)
+    const height = `${100 - indexesFromHovered * 10}%`
+    return height
+  }
+
   return (
     <motion.div
-      style={{ width: width, height: "100%" }}
-      variants={{
-        expand: { width: "70%", height: "100%" },
-        reduce: { height: "100%", width: width },
-        reduceSecondary: { height: `${100 - foo * 10}%`, width: width },
+      style = {{
+         width: width,
+         height: "100%", 
+        }}
+      variants = {{
+        expand: {
+            width: "70%",
+            height: "100%" },
+        reduce: {
+            height: "100%",
+            width: width
+        },
+        reduceSecondary: {
+            height: secondaryHeight(),
+            width: width },
       }}
-      onHoverStart={() => {
-        setHoveredIndex(index);
-      }}
-      onHoverEnd={() => {
-        setHoveredIndex(null);
-      }}
-      animate={activateResize}
+      onHoverStart = {() => setHoveredIndex(index)}
+      onHoverEnd = {() => setHoveredIndex(null)}
+      animate = {activateResize}
     >
       {children}
     </motion.div>

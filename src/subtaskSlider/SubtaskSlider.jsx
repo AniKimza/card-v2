@@ -26,7 +26,7 @@ const SubtaskSlider = () => {
 
   return (
     <Stack justifyContent="center" alignItems="center" height="100vh">
-      <Stack direction="row" width="50%" height="50%" alignItems="flex-end">
+      <Stack direction="row"  width="50%" height="50%" alignItems="flex-end">
         {subImages.map((item, index) => (
           <ImageContainer
             key={item}
@@ -34,7 +34,7 @@ const SubtaskSlider = () => {
             index={index + 1}
             hoveredIndex={hoveredIndex}
             setHoveredIndex={setHoveredIndex}
-            foo={Math.abs(hoveredIndex - (index + 1))}
+            sx={{boxShadow: '50% 0 0 0 rgba(0, 0, 0, 0.5)'}}
           >
             <img
               src={item}
@@ -42,6 +42,7 @@ const SubtaskSlider = () => {
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
+                filter: 'drop-shadow(1rem 1rem 1rem rgba(0, 0, 0, 1))'
               }}
             />
           </ImageContainer>
