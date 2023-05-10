@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Stack from '@mui/material/Stack'
 import Card from '@mui/material/Card'
+import ImageContainer from './ImageContainer'
 
 const SubtaskSlider = () => {
 
-
+   
     // TODO this two arrays will be passed as props but we leave here for now
 
     const subImages = [
@@ -26,17 +27,23 @@ const SubtaskSlider = () => {
   return (
     <Stack justifyContent='center' alignItems='center' height='100vh'>
         <Card sx={{height: '50%', width: '50%', borderRadius: 5}}>
-            <Stack direction='row' height={'100%'}>
+            <Stack direction='row' height={'100%'} alignItems='flex-end'>
                 
                 {subImages.map(
-                    item => <img
+                    (item, index) =>
+                    <ImageContainer 
                         key={item} 
-                        src={item} 
-                        style={{
-                            width: `${100 / subImages.length}%`,
-                            height: '100%',
-                            objectFit: 'cover'
-                        }} /> 
+                        width={ `${100 / subImages.length}%`}
+                        index={index + 1}
+                        >
+                            <img
+                            src={item} 
+                            style={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'cover',
+                            }} />
+                    </ImageContainer>
                     )}
             </Stack>
         </Card>
