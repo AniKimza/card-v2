@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
+
 import Stack from "@mui/material/Stack";
-import Card from "@mui/material/Card";
-import ImageContainer from "./ImageContainer";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+
+import ImageContainer from "./components/ImageContainer";
+import SubTaskContent from "./SubTaskContent";
 
 const SubtaskSlider = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -26,7 +30,7 @@ const SubtaskSlider = () => {
 
   return (
     <Stack justifyContent="center" alignItems="center" height="100vh">
-      <Stack direction="row"  width="50%" height="50%" alignItems="flex-end">
+      <Stack direction="row" height={"60%"} width={"60%"} alignItems="flex-end">
         {subImages.map((item, index) => (
           <ImageContainer
             key={item}
@@ -34,7 +38,6 @@ const SubtaskSlider = () => {
             index={index + 1}
             hoveredIndex={hoveredIndex}
             setHoveredIndex={setHoveredIndex}
-            sx={{boxShadow: '50% 0 0 0 rgba(0, 0, 0, 0.5)'}}
           >
             <img
               src={item}
@@ -42,11 +45,33 @@ const SubtaskSlider = () => {
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
-                filter: 'drop-shadow(1rem 1rem 1rem rgba(0, 0, 0, 1))'
+                filter: "drop-shadow(1rem 1rem 1rem rgba(0, 0, 0, 1))",
+                position: "absolute",
               }}
             />
+            {hoveredIndex === index + 1 && (
+              <SubTaskContent part={index + 1} content={subTasks[index]} />
+            )}
           </ImageContainer>
         ))}
+        <Box
+          justifyContent="center"
+          sx={{
+            width: "60%",
+            position: "absolute",
+            top: "20%",
+          }}
+        >
+          <Typography
+            fontFamily={"Bruno Ace SC"}
+            width={"fit-content"}
+            margin={"0 auto"}
+            fontSize={40}
+            sx={{ filter: "drop-shadow(0 1rem 0.3rem rgba(0, 0, 0, 1))" }}
+          >
+            Learn Coding
+          </Typography>
+        </Box>
       </Stack>
     </Stack>
   );

@@ -36,14 +36,19 @@ const ImageContainer = ({
       variants = {{
         expand: {
             width: "70%",
-            height: "100%" },
+            height: "100%",
+            filter: 'brightness(100%)',
+           },
         reduce: {
             height: "100%",
-            width: width
+            width: width,
+            filter: 'brightness(100%)',
         },
         reduceSecondary: {
             height: secondaryHeight(),
-            width: width },
+            width: width,
+            filter: 'brightness(50%)',
+          },
       }}
       onHoverStart = {() => setHoveredIndex(index)}
       onHoverEnd = {() => setHoveredIndex(null)}
