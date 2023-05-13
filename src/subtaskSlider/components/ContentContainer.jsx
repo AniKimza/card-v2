@@ -7,7 +7,7 @@ const ContentContainer = ({children}) => {
           initial={{ opacity: 0, x: -2 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{
-            delay: 0.2,
+            delay: 0.3,
             ease: 'linear',
             duration: 0.3
           }}

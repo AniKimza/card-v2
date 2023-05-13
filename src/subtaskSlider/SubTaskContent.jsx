@@ -3,7 +3,6 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import ContentContainer from "./components/ContentContainer";
 import AnimatedLines from "./components/AnimatedLines";
-import './css/SubTaskContent.css'
 
 const SubTaskContent = ({ part, content }) => {
   return (
