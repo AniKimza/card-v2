@@ -6,9 +6,11 @@ import Typography from "@mui/material/Typography";
 
 import ImageContainer from "./components/ImageContainer";
 import SubTaskContent from "./SubTaskContent";
+import {SearchBar} from '../assets/SearchBar'
 
 const SubtaskSlider = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [inputValue, setInputValue] = useState('');
 
   // TODO this two arrays will be passed as props but we leave here for now
 
@@ -69,10 +71,11 @@ const SubtaskSlider = () => {
             fontSize={40}
             sx={{ filter: "drop-shadow(0 1rem 0.3rem rgba(0, 0, 0, 1))" }}
           >
-            Learn Coding
+            {inputValue}
           </Typography>
         </Box>
       </Stack>
+      <SearchBar value={inputValue} handleSearch={(e) => {setInputValue(e.target.value)}}/>
     </Stack>
   );
 };
