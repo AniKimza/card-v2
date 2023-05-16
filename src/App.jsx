@@ -18,8 +18,8 @@ function App() {
     <>
       <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      {/* <CustomCard /> */}
-      <SubtaskSlider />
+      <CustomCard />
+      {/* <SubtaskSlider /> */}
       </ThemeProvider>
     </>
   )

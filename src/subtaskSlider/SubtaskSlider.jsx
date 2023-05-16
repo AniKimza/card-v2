@@ -2,9 +2,28 @@ import React, { useEffect, useState } from "react";
 import Stack from "@mui/material/Stack";
 import Card from "@mui/material/Card";
 import ImageContainer from "./ImageContainer";
+import { useAnimation,motion } from "framer-motion";
+import { Button } from "@mui/material";
 
 const SubtaskSlider = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [isOpen, setIsOpen] = useState(true);
+
+  const resizeCard = useAnimation();
+  
+
+  useEffect(() => {
+    if (isOpen) {
+      resizeCard.start("open");
+    } else {
+      resizeCard.start("round");
+      resizeCard.start("closed");
+    }
+  }, [isOpen]);
+
+  const handleTitle = (e) => {
+    setTitle(e.target.value);
+  };
 
   // TODO this two arrays will be passed as props but we leave here for now
 
@@ -26,7 +45,31 @@ const SubtaskSlider = () => {
 
   return (
     <Stack justifyContent="center" alignItems="center" height="100vh">
-      <Stack direction="row"  width="50%" height="50%" alignItems="flex-end">
+      {/* <Stack direction="row"  width="50%" height="50%" alignItems="flex-end"> */}
+      <motion.div
+            layout
+            style={{ display: 'flex', alignItems:"flex-end"}}
+            variants={{
+              open: {
+                height: "50%",
+                width: "50%",
+                scale: 1,
+                borderRadius: 50,
+                position: "relative",
+              },
+              closed: {
+                height: "50px",
+                width: "50px",
+                scale: 0.6,
+                borderRadius: '50%'
+              }
+            }}
+            initial = 'open'
+            transition={{
+              duration: 0.7,
+            }}
+            animate={resizeCard}
+          >
         {subImages.map((item, index) => (
           <ImageContainer
             key={item}
@@ -47,7 +90,20 @@ const SubtaskSlider = () => {
             />
           </ImageContainer>
         ))}
-      </Stack>
+        </motion.div>
+      {/* </Stack> */}
+      
+            <Button
+            sx={{position: 'fixed',
+            bottom: '20%'
+        }}
+              variant="contained"
+              size="large"
+              color="primary"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              Open Card
+            </Button>
     </Stack>
   );
 };
